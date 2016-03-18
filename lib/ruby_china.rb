@@ -31,7 +31,7 @@ statc_hash.each do |name, num|
   up = origin_num.nil? ? 0 : num.to_i - origin_num.to_i
   statsd.gauge("ruby_china_#{name}.up", up, ['ruby_china.oneapm'])
   statsd.gauge("ruby_china.#{name}", num, ['ruby_china.oneapm'])
-  @redis.set("ruby_china.#{name}.up", num)
+  redis.set("ruby_china.#{name}.up", num)
 end
 
 
