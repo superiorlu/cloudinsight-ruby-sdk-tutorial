@@ -27,11 +27,11 @@ job_type  :sh, "cd #{app_root} && #{ruby_path} :task :output"
 
 
 every 1.minute do 
-   sh "weather.rb"
+   sh "lib/weather.rb"
 end
 
 
  every 5.minutes  do
-   sh "ruby_china.rb" 
+   sh "lib/ruby_china.rb" 
  end
 

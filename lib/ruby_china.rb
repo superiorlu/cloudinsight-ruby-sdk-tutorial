@@ -11,7 +11,6 @@ TRANS_MAP = {}.tap do |h|
   h['回帖数'] = :replies
 end
 
-
 topic_page = Nokogiri::HTML(open('https://ruby-china.org/topics'))
 
 statc_info = topic_page.css('div.panel.panel-default').select do |sidebar|
@@ -25,10 +24,10 @@ statc_info.css('li.list-group-item').each do |info|
 end
 
 statsd = OneapmCi::Statsd.new
-@redis = Redis.new
+redis = Redis.new
 
 statc_hash.each do |name, num|
-  origin_num = @redis.get("ruby_china.#{name}.up")
+  origin_num = redis.get("ruby_china.#{name}.up")
   up = origin_num.nil? ? 0 : num.to_i - origin_num.to_i
   statsd.gauge("ruby_china_#{name}.up", up, ['ruby_china.oneapm'])
   statsd.gauge("ruby_china.#{name}", num, ['ruby_china.oneapm'])
