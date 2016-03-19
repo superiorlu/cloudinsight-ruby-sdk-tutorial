@@ -4,11 +4,11 @@
 # http://en.wikipedia.org/wiki/Cron
 # Learn more: http://github.com/javan/whenever
 
- set :app_path, File.expand_path('../', File.dirname(__FILE__))
- set :output, "log/crontab.log"
+set :app_path, File.expand_path('../', File.dirname(__FILE__))
+set :output, "log/crontab.log"
+set :ruby_path, `which ruby`.chop
 
-ruby_path =  `which ruby`.chop
-job_type  :sh, "cd :app_path && #{ruby_path} :task :output"
+job_type  :sh, "cd :app_path && :ruby_path :task :output"
 
 every 1.minute do 
   sh "lib/weather.rb"

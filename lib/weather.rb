@@ -16,8 +16,7 @@ puts "cityname : #{weather['cityname']}"
 
 statsd = OneapmCi::Statsd.new
 
-statsd.gauge("weather.temp_10", weather['temp'].to_f + 10.0, ['weather.oneapm'])
-#statsd.gauge("weather.temp+11", weather['temp'].to_f + 10.0, ['weather.oneapm'])
+statsd.gauge("weather.temp", weather['temp'].to_f, ['weather.oneapm'])
 statsd.gauge("weather.wse", weather['wse'].gsub('&lt;', '').gsub('&gt;', '').to_f, ['weather.oneapm'])
 statsd.gauge("weather.sd", weather['SD'].to_f, ['weather.oneapm'])
 

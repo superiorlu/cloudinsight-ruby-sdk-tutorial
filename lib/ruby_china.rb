@@ -29,7 +29,7 @@ redis = Redis.new
 statc_hash.each do |name, num|
   origin_num = redis.get("ruby_china.#{name}")
   up = origin_num.nil? ? 0 : num.to_i - origin_num.to_i
-  puts "name: #{name} num: #{num} up: #{up}"
+  puts "name:#{name} num:#{num} up:#{up}"
   statsd.gauge("ruby_china_#{name}.up", up, ['ruby_china.oneapm'])
   statsd.gauge("ruby_china.#{name}", num, ['ruby_china.oneapm'])
   redis.set("ruby_china.#{name}", num)
