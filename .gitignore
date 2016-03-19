@@ -1,2 +1,2 @@
-cron_log.log
+crontab.log
 *.rdb
