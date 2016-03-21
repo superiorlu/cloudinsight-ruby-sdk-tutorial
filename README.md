@@ -9,8 +9,12 @@
   2. 获取业务数据，例如获取[Ruby-China](https://ruby-china.org/topics)的**回帖活跃度**。
   3. 在```Gemfile```加入 ```gem 'oneapm_ci', '0.0.1'```。
   4. 运行 ```bundle install```, 具体脚本如下：
-  5. 
+  ```ruby
+  #! /usr/bin/env ruby
   
-  
-
-5. 需要定时向探针传送数据可以参考[awesonme-ruby推荐的工具](https://github.com/markets/awesome-ruby#scheduling)。
+  requrie 'oneapm_ci'
+  statsd = OneapmCi::Statsd.new
+  statsd.gauge('ruby_china.replies', replies) #使用连续型的数据类型
+  ```
+  5. 需要定时向探针传送数据可以参考[awesonme-ruby推荐的工具](https://github.com/markets/awesome-ruby#scheduling)。
+ 
