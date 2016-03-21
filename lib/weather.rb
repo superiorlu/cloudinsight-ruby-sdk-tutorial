@@ -3,6 +3,7 @@
 require 'excon'
 require 'json'
 require 'oneapm_ci'
+require_relative 'time_formater'
 
 weather_res = Excon.get("http://d1.weather.com.cn/sk_2d/101011400.html?_=14420685#{rand(9999)}", 
   :headers => {'Referer' => 'http://m.weather.com.cn/mweather1d/101011400.shtml', 
@@ -11,8 +12,8 @@ weather_res = Excon.get("http://d1.weather.com.cn/sk_2d/101011400.html?_=1442068
 )
 
 weather = JSON.parse($1) if weather_res.body =~ /=\s+(.*)/
-puts "res : #{weather}"
-puts "cityname : #{weather['cityname']}"
+puts "#{TimeFormater.now} res : #{weather}"
+puts "#{TimeFormater.now} cityname : #{weather['cityname']}"
 
 statsd = OneapmCi::Statsd.new
 
