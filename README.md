@@ -7,7 +7,7 @@
 ###SDK使用步骤
   1. 安装[Cloud Insight](http://www.oneapm.com/ci/feature.html)探针，见[文档](http://docs-ci.oneapm.com/quick-start/)。
   2. 获取业务数据，例如获取[Ruby-China](https://ruby-china.org/topics)的**回帖活跃度**。
-  3. 在```Gemfile```加入 ```gem 'oneapm_ci', '0.0.1'```。
+  3. 在```Gemfile```加入 ```gem 'oneapm_ci', '0.0.1'``` 源码：[https://github.com/cloudinsight/cloudinsight-ruby-sdk](https://github.com/cloudinsight/cloudinsight-ruby-sdk)。
   4. 运行 ```bundle install```, 具体脚本如下：
   ```ruby
   #! /usr/bin/env ruby
