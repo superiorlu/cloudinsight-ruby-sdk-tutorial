@@ -17,8 +17,8 @@ puts "#{TimeFormater.now} cityname : #{weather['cityname']}"
 
 statsd = OneapmCi::Statsd.new
 
-statsd.gauge("weather.temp", weather['temp'].to_f, ['weather.oneapm'])
-statsd.gauge("weather.wse", weather['wse'].gsub('&lt;', '').gsub('&gt;', '').to_f, ['weather.oneapm'])
-statsd.gauge("weather.sd", weather['SD'].to_f, ['weather.oneapm'])
+statsd.gauge("weather.temp", weather['temp'].to_f)
+statsd.gauge("weather.wse", weather['wse'].gsub('&lt;', '').gsub('&gt;', '').to_f)
+statsd.gauge("weather.sd", weather['SD'].to_f)
 
 
