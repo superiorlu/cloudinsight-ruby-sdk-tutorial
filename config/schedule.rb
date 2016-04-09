@@ -18,3 +18,6 @@ every 5.minutes  do
   sh "lib/ruby_china.rb" 
 end
 
+every 30.minutes  do
+  sh "lib/fangjia.rb" 
+end

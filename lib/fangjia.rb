@@ -24,7 +24,7 @@ areas.each do |area|
     url = "http://bj.lianjia.com/fangjia/#{area}"
     puts url
     area_fangjia_page = Nokogiri::HTML(open(url))
-    if area.empty? #beijing special
+    if area.empty? #city special
       css[:saled] = 'div.display-block.fl > div.bottom > div.second.fl > span'
       css[:visited] = 'div.display-block.fl > div.bottom > div.third.fl > span'
     end
