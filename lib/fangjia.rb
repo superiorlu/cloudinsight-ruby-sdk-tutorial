@@ -48,9 +48,9 @@ def search_info page, css = {}
     fangjia[:fangyuan] = fangyuan_info && fangyuan_info[:num] # 在售房源
 
     origin_saled_info = page.css('div.display-block.fl > div.view > div > div > div > div.last > div > p:nth-child(2) > a').text
-    saled_info = /成交房源(?<num>.*)套/.match(origin_saled_info)
-    puts "WARNING saled_info: #{saled_info}" unless saled_info
-    fangjia[:saled] = saled_info && saled_info[:num] # 最近90天内成交房源
+    saled_in_90_days_info = /成交房源(?<num>.*)套/.match(origin_saled_info)
+    puts "WARNING saled_in_90_days_info: #{origin_saled_info}" unless saled_in_90_days_info
+    fangjia[:saled_in_90_days] = saled_in_90_days_info && saled_in_90_days_info[:num] # 最近90天内成交房源
 
     fangjia[:kefang_yesterday] = page.css('div.display-block.fl > div.bottom > div.first.fl > span').text # 昨日新增客房比-城市范围
 
@@ -58,7 +58,7 @@ def search_info page, css = {}
     fangjia[:saled_yesterday] = page.css(saled_css).text # 昨日成交量/套
 
     visited_css = css[:visited] ? css[:visited] : 'div.display-block.fl > div.bottom > div:nth-child(3) > span'
-    fangjia[:visited] = page.css(visited_css).text # 昨日房源带看量/次
+    fangjia[:visited_yesterday] = page.css(visited_css).text # 昨日房源带看量/次
   end
 end
 
