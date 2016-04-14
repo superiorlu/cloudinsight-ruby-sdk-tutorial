@@ -31,7 +31,7 @@ statc_hash.each do |name, num|
   origin_num = redis.get("ruby_china.#{name}")
   up = origin_num.nil? ? 0 : num.to_i - origin_num.to_i
   puts "#{TimeFormater.now} name:#{name} num:#{num} up:#{up}"
-  statsd.gauge("ruby_china_#{name}.up", up)
+  statsd.gauge("ruby_china.#{name}.up", up)
   statsd.gauge("ruby_china.#{name}", num)
   redis.set("ruby_china.#{name}", num)
 end
