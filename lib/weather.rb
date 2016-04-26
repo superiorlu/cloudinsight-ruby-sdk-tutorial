@@ -2,7 +2,7 @@
 
 require 'excon'
 require 'json'
-require 'oneapm_ci'
+require 'cloudinsight-sdk'
 require_relative 'time_formater'
 
 weather_res = Excon.get("http://d1.weather.com.cn/sk_2d/101011400.html?_=14420685#{rand(9999)}", 
@@ -15,7 +15,7 @@ weather = JSON.parse($1) if weather_res.body =~ /=\s+(.*)/
 puts "#{TimeFormater.now} res : #{weather}"
 puts "#{TimeFormater.now} cityname : #{weather['cityname']}"
 
-statsd = OneapmCi::Statsd.new
+statsd = CloudInsight::Statsd.new
 
 statsd.gauge("weather.temp", weather['temp'].to_f)
 statsd.gauge("weather.wse", weather['wse'].gsub('&lt;', '').gsub('&gt;', '').to_f)

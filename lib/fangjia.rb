@@ -2,7 +2,7 @@
 
 require 'nokogiri'
 require 'open-uri'
-require 'oneapm_ci'
+require 'cloudinsight-sdk'
 require_relative 'time_formater'
 
 fangjia_page = Nokogiri::HTML(open('http://bj.lianjia.com/fangjia'))
@@ -17,10 +17,10 @@ end
 threads = []
 
 areas.each do |area|
-  threads << Thread.new do 
+  threads << Thread.new do
     fangjia = {}
     css = {}
-    statsd = OneapmCi::Statsd.new
+    statsd = CloudInsight::Statsd.new
     url = "http://bj.lianjia.com/fangjia/#{area}"
     puts url
     area_fangjia_page = Nokogiri::HTML(open(url))

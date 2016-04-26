@@ -2,7 +2,7 @@
 
 require 'nokogiri'
 require 'open-uri'
-require 'oneapm_ci'
+require 'cloudinsight-sdk'
 require 'redis'
 require_relative 'time_formater'
 
@@ -24,7 +24,7 @@ statc_info.css('li.list-group-item').each do |info|
   statc_hash[TRANS_MAP[match_info[:name]]] = match_info[:num]
 end
 
-statsd = OneapmCi::Statsd.new
+statsd = CloudInsight::Statsd.new
 redis = Redis.new
 
 statc_hash.each do |name, num|
