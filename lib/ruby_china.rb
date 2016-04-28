@@ -35,4 +35,3 @@ statc_hash.each do |name, num|
   statsd.gauge("ruby_china.#{name}", num)
   redis.set("ruby_china.#{name}", num)
 end
-

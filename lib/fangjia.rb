@@ -18,13 +18,12 @@ threads = []
 
 areas.each do |area|
   threads << Thread.new do
-    fangjia = {}
     css = {}
     statsd = CloudInsight::Statsd.new
     url = "http://bj.lianjia.com/fangjia/#{area}"
     puts url
     area_fangjia_page = Nokogiri::HTML(open(url))
-    if area.empty? #city special
+    if area.empty? # city special
       css[:saled] = 'div.display-block.fl > div.bottom > div.second.fl > span'
       css[:visited] = 'div.display-block.fl > div.bottom > div.third.fl > span'
     end
@@ -38,7 +37,7 @@ areas.each do |area|
   end
 end
 
-def search_info page, css = {}
+def search_info(page, css = {})
   {}.tap do |fangjia|
     fangjia[:price] = page.css('#properties-listed-count').text # 均价 元/平米
 
